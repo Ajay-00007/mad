@@ -158,3 +158,19 @@ Exception: System.InvalidOperationException: No sign-in authentication handler i
 Stack Trace:    at Microsoft.AspNetCore.Authentication.AuthenticationService.SignInAsync(HttpContext context, String scheme, ClaimsPrincipal principal, AuthenticationProperties properties)
    at StudentManagementSystem.Pages.Account.LoginModel.OnPostAsync(String returnUrl)
 ----------------------------------------
+[2025-03-26 06:14:51] Error ID: 755fa0d3-944e-4ae7-941e-0e9a5d419d7f
+Message: Error during login process
+Exception: StudentManagementSystem.Utilities.NotFoundException: Student with email 2203031240362@paaruluniversity.ac.in not found
+   at StudentManagementSystem.Services.StudentService.GetStudentByEmailAsync(String email) in /project/sandbox/user-workspace/StudentManagementSystem/Services/StudentService.cs:line 75
+   at StudentManagementSystem.Pages.Account.LoginModel.OnPostAsync(String returnUrl) in /project/sandbox/user-workspace/StudentManagementSystem/Pages/Account/Login.cshtml.cs:line 100
+Stack Trace:    at StudentManagementSystem.Services.StudentService.GetStudentByEmailAsync(String email) in /project/sandbox/user-workspace/StudentManagementSystem/Services/StudentService.cs:line 75
+   at StudentManagementSystem.Pages.Account.LoginModel.OnPostAsync(String returnUrl) in /project/sandbox/user-workspace/StudentManagementSystem/Pages/Account/Login.cshtml.cs:line 100
+----------------------------------------
+[2025-03-26 06:14:55] Error ID: 24d159a1-81a6-4725-9b60-3c2122aa3b15
+Message: Error during login process
+Exception: StudentManagementSystem.Utilities.NotFoundException: Student with email 2203031240362@paaruluniversity.ac.in not found
+   at StudentManagementSystem.Services.StudentService.GetStudentByEmailAsync(String email) in /project/sandbox/user-workspace/StudentManagementSystem/Services/StudentService.cs:line 75
+   at StudentManagementSystem.Pages.Account.LoginModel.OnPostAsync(String returnUrl) in /project/sandbox/user-workspace/StudentManagementSystem/Pages/Account/Login.cshtml.cs:line 100
+Stack Trace:    at StudentManagementSystem.Services.StudentService.GetStudentByEmailAsync(String email) in /project/sandbox/user-workspace/StudentManagementSystem/Services/StudentService.cs:line 75
+   at StudentManagementSystem.Pages.Account.LoginModel.OnPostAsync(String returnUrl) in /project/sandbox/user-workspace/StudentManagementSystem/Pages/Account/Login.cshtml.cs:line 100
+----------------------------------------
