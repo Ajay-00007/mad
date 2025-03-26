@@ -1,0 +1,122 @@
+@page
+@model StudentManagementSystem.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Student Profile</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Student.FirstName" class="form-label">First Name</label>
+                                <input asp-for="Student.FirstName" class="form-control" required />
+                                <span asp-validation-for="Student.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Student.LastName" class="form-label">Last Name</label>
+                                <input asp-for="Student.LastName" class="form-control" required />
+                                <span asp-validation-for="Student.LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Student.Email" class="form-label">Email</label>
+                            <input asp-for="Student.Email" class="form-control" type="email" required />
+                            <span asp-validation-for="Student.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Student.PhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="Student.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Student.PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Student.DateOfBirth" class="form-label">Date of Birth</label>
+                            <input asp-for="Student.DateOfBirth" class="form-control" type="date" />
+                            <span asp-validation-for="Student.DateOfBirth" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Student.Address" class="form-label">Address</label>
+                            <textarea asp-for="Student.Address" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Student.Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Enrollment ID</label>
+                            <input value="@Model.Student.StudentId" class="form-control" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Enrollment Date</label>
+                            <input value="@Model.Student.EnrollmentDate" class="form-control" readonly />
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Academic Summary -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Academic Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="fw-bold">Active Courses</label>
+                        <p class="mb-0">@Model.ActiveCoursesCount</p>
+                    </div
+                </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Change Password</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="ChangePassword">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" id="newPassword" name="newPassword" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required />
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-key me-1"></i> Change Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

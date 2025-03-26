@@ -1,0 +1,146 @@
+@page
+@model StudentManagementSystem.Pages.Enquiry.TeachingEvaluationModel
+@{
+    ViewData["Title"] = "Teaching Evaluation";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6">Teaching Evaluation</h2>
+
+    @if (Model.EnrolledCourses?.Any() == true)
+    {
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <form method="post" class="space-y-6">
+                <div asp-validation-summary="ModelOnly" class="text-red-600"></div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label asp-for="Evaluation.CourseId" class="block text-sm font-medium text-gray-700">Select Course</label>
+                        <select asp-for="Evaluation.CourseId" 
+                                asp-items="@(new SelectList(Model.EnrolledCourses, "CourseId", "CourseName"))"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                            <option value="">-- Select a course --</option>
+                        </select>
+                        <span asp-validation-for="Evaluation.CourseId" class="text-sm text-red-600"></span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label asp-for="Evaluation.TeachingQuality" class="block text-sm font-medium text-gray-700">Teaching Quality</label>
+                            <div class="mt-1 flex items-center space-x-4">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <label class="flex items-center">
+                                        <input type="radio" asp-for="Evaluation.TeachingQuality" value="@i" 
+                                               class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <span class="ml-2">@i</span>
+                                    </label>
+                                }
+                            </div>
+                            <span asp-validation-for="Evaluation.TeachingQuality" class="text-sm text-red-600"></span>
+                        </div>
+
+                        <div>
+                            <label asp-for="Evaluation.CourseContent" class="block text-sm font-medium text-gray-700">Course Content</label>
+                            <div class="mt-1 flex items-center space-x-4">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <label class="flex items-center">
+                                        <input type="radio" asp-for="Evaluation.CourseContent" value="@i" 
+                                               class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <span class="ml-2">@i</span>
+                                    </label>
+                                }
+                            </div>
+                            <span asp-validation-for="Evaluation.CourseContent" class="text-sm text-red-600"></span>
+                        </div>
+
+                        <div>
+                            <label asp-for="Evaluation.LearningResources" class="block text-sm font-medium text-gray-700">Learning Resources</label>
+                            <div class="mt-1 flex items-center space-x-4">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <label class="flex items-center">
+                                        <input type="radio" asp-for="Evaluation.LearningResources" value="@i" 
+                                               class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <span class="ml-2">@i</span>
+                                    </label>
+                                }
+                            </div>
+                            <span asp-validation-for="Evaluation.LearningResources" class="text-sm text-red-600"></span>
+                        </div>
+
+                        <div>
+                            <label asp-for="Evaluation.AssessmentMethods" class="block text-sm font-medium text-gray-700">Assessment Methods</label>
+                            <div class="mt-1 flex items-center space-x-4">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <label class="flex items-center">
+                                        <input type="radio" asp-for="Evaluation.AssessmentMethods" value="@i" 
+                                               class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <span class="ml-2">@i</span>
+                                    </label>
+                                }
+                            </div>
+                            <span asp-validation-for="Evaluation.AssessmentMethods" class="text-sm text-red-600"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label asp-for="Evaluation.Comments" class="block text-sm font-medium text-gray-700">Additional Comments</label>
+                        <textarea asp-for="Evaluation.Comments" rows="4" 
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                        <span asp-validation-for="Evaluation.Comments" class="text-sm text-red-600"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Submit Evaluation
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        @if (Model.PreviousEvaluations?.Any() == true)
+        {
+            <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-4">Previous Evaluations</h3>
+                <div class="space-y-4">
+                    @foreach (var eval in Model.PreviousEvaluations)
+                    {
+                        <div class="border border-gray-200 rounded-md p-4">
+                            <h4 class="font-medium">@eval.Course?.CourseName</h4>
+                            <div class="mt-2 grid grid-cols-2 gap-4 text-sm">
+                                <div>Teaching Quality: @eval.TeachingQuality/5</div>
+                                <div>Course Content: @eval.CourseContent/5</div>
+                                <div>Learning Resources: @eval.LearningResources/5</div>
+                                <div>Assessment Methods: @eval.AssessmentMethods/5</div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(eval.Comments))
+                            {
+                                <div class="mt-2 text-gray-600">
+                                    <p class="text-sm">Comments:</p>
+                                    <p class="mt-1">@eval.Comments</p>
+                                </div>
+                            }
+                            <div class="mt-2 text-xs text-gray-500">
+                                Submitted on @eval.SubmittedAt.ToString("MMM dd, yyyy")
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <p class="text-gray-500">You are not enrolled in any courses to evaluate.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

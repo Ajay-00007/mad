@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net8.0/scopedcss/projectbundle/StudentManagementSystem.bundle.scp.css",
+      "PackagePath": "staticwebassets/StudentManagementSystem.bundle.scp.css"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/js/auth.js",
+      "PackagePath": "staticwebassets/js/auth.js"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/project/sandbox/user-workspace/StudentManagementSystem/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.StudentManagementSystem.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.StudentManagementSystem.props",
+      "PackagePath": "build\\StudentManagementSystem.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.StudentManagementSystem.props",
+      "PackagePath": "buildMultiTargeting\\StudentManagementSystem.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.StudentManagementSystem.props",
+      "PackagePath": "buildTransitive\\StudentManagementSystem.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

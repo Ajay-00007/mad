@@ -1,0 +1,154 @@
+@page
+@model StudentManagementSystem.Pages.Admin.Timetables.IndexModel
+@{
+    ViewData["Title"] = "Timetable Management";
+    var daysOfWeek = new[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+    var timeSlots = new[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Timetable Management</h2>
+        <div class="d-flex gap-2">
+            <select id="studentSelect" class="form-select" style="width: 300px;" onchange="loadStudentTimetable()">
+                <option value="">Select a student...</option>
+                @foreach (var student in Model.Students)
+                {
+                    <option value="@student.StudentId">@student.FullName (@student.StudentId)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <!-- Master Timetable -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Master Timetable</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px">Time</th>
+                            @foreach (var day in daysOfWeek)
+                            {
+                                <th>@day</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var timeSlot in timeSlots)
+                        {
+                            <tr>
+                                <td class="text-center">@timeSlot</td>
+                                @foreach (var day in daysOfWeek)
+                                {
+                                    var schedules = Model.GetSchedulesForTimeSlot(day, timeSlot);
+                                    <td class="@(schedules.Any() ? "bg-light" : "")">
+                                        @foreach (var schedule in schedules)
+                                        {
+                                            <div class="p-1 mb-1 bg-primary text-white rounded">
+                                                <small>
+                                                    @schedule.Course.CourseName<br/>
+                                                    Room: @schedule.Room
+                                                </small>
+                                            </div>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Timetable -->
+    <div class="card" id="studentTimetableCard" style="display: none;">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Student Timetable</h5>
+            <div id="studentName" class="text-muted"></div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px">Time</th>
+                            @foreach (var day in daysOfWeek)
+                            {
+                                <th>@day</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody id="studentTimetableBody">
+                        @foreach (var timeSlot in timeSlots)
+                        {
+                            <tr>
+                                <td class="text-center">@timeSlot</td>
+                                @foreach (var day in daysOfWeek)
+                                {
+                                    <td data-day="@day" data-time="@timeSlot"></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function loadStudentTimetable() {
+            const studentId = document.getElementById('studentSelect').value;
+            const studentName = document.getElementById('studentSelect').options[document.getElementById('studentSelect').selectedIndex].text;
+            const card = document.getElementById('studentTimetableCard');
+            
+            if (!studentId) {
+                card.style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/Admin/Timetables/GetStudentSchedule?studentId=${studentId}`);
+                if (!response.ok) throw new Error('Failed to fetch timetable');
+                
+                const schedules = await response.json();
+                
+                // Clear existing schedule
+                document.querySelectorAll('#studentTimetableBody td[data-day]').forEach(td => {
+                    td.innerHTML = '';
+                    td.className = '';
+                });
+
+                // Populate schedule
+                schedules.forEach(schedule => {
+                    const cell = document.querySelector(`#studentTimetableBody td[data-day="${schedule.dayOfWeek}"][data-time="${schedule.startTime}"]`);
+                    if (cell) {
+                        cell.innerHTML = `
+                            <div class="p-1 bg-success text-white rounded">
+                                <small>
+                                    ${schedule.courseName}<br/>
+                                    Room: ${schedule.room}
+                                </small>
+                            </div>
+                        `;
+                        cell.className = 'bg-light';
+                    }
+                });
+
+                // Show the card and update student name
+                card.style.display = 'block';
+                document.getElementById('studentName').textContent = studentName;
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to load student timetable. Please try again.');
+            }
+        }
+    </script>
+}

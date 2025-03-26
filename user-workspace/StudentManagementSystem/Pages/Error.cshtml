@@ -1,0 +1,83 @@
+﻿@page
+@model StudentManagementSystem.Pages.ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-danger">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-exclamation-triangle text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h1 class="text-danger mb-3">Error</h1>
+                    @if (Model.ShowRequestId)
+                    {
+                        <p class="text-muted mb-3">
+                            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                        </p>
+                    }
+                    <p class="lead mb-4">
+                        @if (Model.IsProduction)
+                        {
+                            <text>An error occurred while processing your request. Our team has been notified and is working to resolve the issue.</text>
+                        }
+                        else
+                        {
+                            <text>@Model.ErrorMessage</text>
+                        }
+                    </p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button onclick="history.back()" class="btn btn-secondary me-2">
+                            <i class="fas fa-arrow-left me-2"></i>Go Back
+                        </button>
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>Return Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @if (!Model.IsProduction && Model.Exception != null)
+            {
+                <div class="card mt-4">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">Exception Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-danger mb-3">
+                            <h6 class="alert-heading">Message:</h6>
+                            <p class="mb-0">@Model.Exception.Message</p>
+                        </div>
+
+                        @if (Model.Exception.StackTrace != null)
+                        {
+                            <div class="bg-light p-3 rounded">
+                                <h6>Stack Trace:</h6>
+                                <pre class="mb-0"><code>@Model.Exception.StackTrace</code></pre>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Log error to console in development
+        @if (!Model.IsProduction)
+        {
+            <text>
+            console.error('Error occurred:', {
+                requestId: '@Model.RequestId',
+                message: '@(Model.ErrorMessage?.Replace("'", "\\'"))',
+                path: window.location.pathname
+            });
+            </text>
+        }
+    </script>
+}

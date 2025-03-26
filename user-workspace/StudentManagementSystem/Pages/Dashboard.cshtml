@@ -1,0 +1,144 @@
+@page
+@model StudentManagementSystem.Pages.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Welcome, @Model.StudentName!</h2>
+
+    <div class="row">
+       
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Courses</h3>
+                <p class="h4 mb-0">@Model.EnrolledCoursesCount</p>
+                <p class="text-muted">Enrolled Courses</p>
+                <a asp-page="/Courses" class="btn btn-primary btn-sm">View Courses</a>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Payments</h3>
+                <p class="h4 mb-0">$@Model.TotalPayments.ToString("N2")</p>
+                <p class="text-muted">Total Paid</p>
+                <a asp-page="/Payments" class="btn btn-primary btn-sm">View Payments</a>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Schedule</h3>
+                <p class="h4 mb-0">@Model.TodaysClassesCount</p>
+                <p class="text-muted">Today's Classes</p>
+                <a asp-page="/Schedule" class="btn btn-primary btn-sm">View Schedule</a>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Profile</h3>
+                <p class="text-muted mb-2">Update your details</p>
+                <a asp-page="/Profile" class="btn btn-primary btn-sm">View Profile</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Recent Enrollments</h3>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentEnrollments.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Enrollment Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var enrollment in Model.RecentEnrollments)
+                                    {
+                                        <tr>
+                                            <td>@enrollment.Course?.CourseName</td>
+                                            <td>@enrollment.EnrollmentDate.ToShortDateString()</td>
+                                            <td>
+                                                <span class="badge bg-@(enrollment.Status == EnrollmentStatus.Active ? "success" : 
+                                                                       enrollment.Status == EnrollmentStatus.Pending ? "warning" : 
+                                                                       enrollment.Status == EnrollmentStatus.Dropped ? "danger" : "info")">
+                                                    @enrollment.Status
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No recent enrollments found.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Quick Links</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a asp-page="/AddDrop" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-exchange-alt me-2"></i> Add/Drop Courses
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-page="/Payments/New" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-money-bill me-2"></i> Make Payment
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-page="/Statement" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-file-alt me-2"></i> View Statement
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a asp-page="/Contact" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-envelope me-2"></i> Contact Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

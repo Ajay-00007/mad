@@ -1,0 +1,176 @@
+@page
+@model StudentManagementSystem.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-4">Admin Dashboard</h2>
+            <div class="alert alert-info">
+                Welcome back, @User.FindFirst(System.Security.Claims.ClaimTypes.GivenName)?.Value!
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Quick Stats -->
+        <div class="col-md-3 mb-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <h2 class="mb-0">@Model.TotalStudents</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Active Courses</h5>
+                    <h2 class="mb-0">@Model.ActiveCourses</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Open Issues</h5>
+                    <h2 class="mb-0">@Model.OpenIssues</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <h2 class="mb-0">$@Model.TotalRevenue.ToString("N2")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Student Issues -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Issues</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Issue</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var issue in Model.RecentIssues)
+                                {
+                                    <tr>
+                                        <td>@issue.Student.FullName</td>
+                                        <td>@issue.Title</td>
+                                        <td>
+                                            <span class="badge bg-@(issue.Status == "Open" ? "danger" : 
+                                                                   issue.Status == "InProgress" ? "warning" : 
+                                                                   "success")">
+                                                @issue.Status
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a asp-page="./Issues/Details" asp-route-id="@issue.IssueId" 
+                                               class="btn btn-sm btn-primary">View</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end">
+                        <a asp-page="./Issues/Index" class="btn btn-link">View All Issues</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Management -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Course Management</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Students</th>
+                                    <th>Fee</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var course in Model.RecentCourses)
+                                {
+                                    <tr>
+                                        <td>@course.CourseName</td>
+                                        <td>@course.CourseEnrollments.Count</td>
+                                        <td>$@course.Fee.ToString("N2")</td>
+                                        <td>
+                                            <a asp-page="./Courses/Details" asp-route-id="@course.CourseId" 
+                                               class="btn btn-sm btn-primary">Manage</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-end">
+                        <a asp-page="./Courses/Index" class="btn btn-link">View All Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timetable Quick Access -->
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a asp-page="./Timetables/Index" class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-calendar-alt me-2"></i>View All Timetables
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-page="./Students/Index" class="btn btn-outline-success w-100 mb-2">
+                                <i class="fas fa-users me-2"></i>Manage Students
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-page="./Reports/Index" class="btn btn-outline-info w-100 mb-2">
+                                <i class="fas fa-chart-bar me-2"></i>View Reports
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add any dashboard-specific JavaScript here
+    </script>
+}

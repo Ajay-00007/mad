@@ -1,0 +1,26 @@
+@page
+@model StudentManagementSystem.Pages.ContactModel
+@{
+    ViewData["Title"] = "Contact Support";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Contact Support</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="ContactForm.Subject" class="form-label">Subject</label>
+                    <input asp-for="ContactForm.Subject" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactForm.Message" class="form-label">Message</label>
+                    <textarea asp-for="ContactForm.Message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
