@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App theme colors -->
+    <color name="primary">#0061A4</color>
+    <color name="primary_dark">#003258</color>
+    <color name="primary_light">#9ECAFF</color>
+    <color name="accent">#6B5778</color>
+    
+    <!-- Status colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#BA1A1A</color>
+    <color name="info">#2196F3</color>
+    
+    <!-- Appointment status colors -->
+    <color name="status_pending">#FF9800</color>
+    <color name="status_confirmed">#4CAF50</color>
+    <color name="status_cancelled">#F44336</color>
+    <color name="status_completed">#2196F3</color>
+    
+    <!-- Common colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="gray_dark">#616161</color>
+    
+    <!-- Background colors -->
+    <color name="background">#FDFCFF</color>
+    <color name="surface">#FDFCFF</color>
+    <color name="surface_variant">#DFE2EB</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#1A1C1E</color>
+    <color name="text_secondary">#43474E</color>
+    <color name="text_hint">#73777F</color>
+    
+    <!-- Icon colors -->
+    <color name="icon_active">#0061A4</color>
+    <color name="icon_inactive">#73777F</color>
+    
+    <!-- Launcher icon colors -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="ic_launcher_foreground">#0061A4</color>
+</resources>

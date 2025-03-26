@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MediBook</string>
+    
+    <!-- Common -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+    
+    <!-- Authentication -->
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    
+    <!-- Doctor Booking -->
+    <string name="book_appointment">Book Appointment</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="doctor_details">Doctor Details</string>
+    <string name="available_slots">Available Slots</string>
+    <string name="no_slots_available">No slots available</string>
+    
+    <!-- Patient Information -->
+    <string name="patient_info">Patient Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="first_visit">First Visit</string>
+    <string name="reason_for_visit">Reason for Visit</string>
+    
+    <!-- Medical History -->
+    <string name="medical_history">Medical History</string>
+    <string name="chronic_conditions">Chronic Conditions</string>
+    <string name="allergies">Allergies</string>
+    <string name="current_medications">Current Medications</string>
+    <string name="previous_surgeries">Previous Surgeries</string>
+    
+    <!-- Appointment Status -->
+    <string name="pending">Pending</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="completed">Completed</string>
+    
+    <!-- Search and Filter -->
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort_by">Sort by</string>
+    <string name="specialization">Specialization</string>
+    <string name="languages">Languages</string>
+    <string name="experience">Experience</string>
+    <string name="distance">Distance</string>
+    <string name="rating">Rating</string>
+    
+    <!-- Clinic Information -->
+    <string name="clinic_info">Clinic Information</string>
+    <string name="operating_hours">Operating Hours</string>
+    <string name="facilities">Facilities</string>
+    <string name="get_directions">Get Directions</string>
+    <string name="call_clinic">Call Clinic</string>
+    
+    <!-- Notifications -->
+    <string name="appointment_booked">Appointment booked successfully</string>
+    <string name="appointment_cancelled">Appointment cancelled</string>
+    <string name="appointment_reminder">Appointment reminder</string>
+    
+    <!-- Error Messages -->
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_server">Server error. Please try again later.</string>
+    <string name="error_invalid_input">Please check your input and try again.</string>
+    <string name="error_booking">Unable to book appointment. Please try again.</string>
+</resources>

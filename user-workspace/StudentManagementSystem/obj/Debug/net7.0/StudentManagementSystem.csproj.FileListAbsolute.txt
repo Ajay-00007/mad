@@ -1,9 +1,0 @@
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.csproj.AssemblyReference.cache
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.AssemblyInfoInputs.cache
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.AssemblyInfo.cs
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.csproj.CoreCompileInputs.cache
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.MvcApplicationPartsAssemblyInfo.cache
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.RazorAssemblyInfo.cache
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.RazorAssemblyInfo.cs
-/project/sandbox/user-workspace/StudentManagementSystem/obj/Debug/net7.0/StudentManagementSystem.sourcelink.json
